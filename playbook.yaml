@@ -27,6 +27,10 @@
       dest: /home/tv/.config/i3/config
 
   - copy:
+      src: selftest.sh
+      dest: /home/tv/selftest.sh
+
+  - copy:
       src: lightdm.conf
       dest: /etc/lightdm/lightdm.conf
 
@@ -47,6 +51,8 @@
         WorkingDirectory=/home/tv/mikit
         ExecStart=/usr/bin/node mikit.js
         Restart=always
+        RestartSec=5
+        StartLimitInterval=0
 
         [Install]
         WantedBy=multi-user.target
