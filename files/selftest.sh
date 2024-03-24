@@ -118,12 +118,12 @@ run_test network_up "local network interface is up"
 run_test ping_local_gw "local gateway (SRX firewall in tech rack) responds to ping"
 run_test ping_internet "a host on the internet (1.1.1.1) is pingable"
 run_test ping_dc "a host in the datacenter (10.36.0.1) is pingable"
-run_test ping_napster "music player NAS (napster) is pingable"
 
 run_test dns_public "public DNS names (www.google.com) resolve"
 run_test dns_idm "internal DNS names (napster.idm.wappuradio.fi) resolve"
 run_test dns_levykanta "levykanta internal name (i.levykanta.wappuradio.fi) resolves"
 
+run_test ping_napster "music player NAS (napster) is pingable"
 run_test ping_levykanta "levykanta responds to ping"
 run_test curl_levykanta "warmup responds on levykanta"
 run_test nfs_levykanta "NFS is mounted on levykanta"
@@ -136,7 +136,8 @@ run_test mikit_node "mikit.service is running"
 run_test mikit_port "mikit.service listens on port 1337"
 run_test curl_mikit "mikit.service is reachable via https://intra.wappuradio.fi/mikit/"
 
-
+run_test chromium "chromium is running"
+run_test chromium_url "https://wappuradio.fi/files/vituntelkkari.html opens"
 
 echo ""
 echo -n "Overall status: "
