@@ -1,0 +1,58 @@
+---
+
+- hosts: localhost
+  tasks:
+
+  - apt:
+      name: "{{ item }}"
+      state: present
+    loop:
+    - i3
+    - openssh-server
+    - nodejs
+    - npm
+    - libasound2-dev
+
+  - systemd:
+      name: ssh.service
+      state: started
+      enabled: true
+
+  - user:
+      name: tv
+      state: present
+
+  - copy:
+      src: i3.conf
+      dest: /home/tv/.config/i3/config
+
+  - copy:
+      src: lightdm.conf
+      dest: /etc/lightdm/lightdm.conf
+
+  - file:
+      path: /etc/systemd/system/getty@tty1.service.d
+      state: absent
+
+# TODO: clone https://github.com/wappuradio/mikit
+
+
+  - copy:
+      content: |
+        [Unit]
+        Description=mikit
+
+        [Service]
+        User=tv
+        WorkingDirectory=/home/tv/mikit
+        ExecStart=/usr/bin/node mikit.js
+        Restart=always
+
+        [Install]
+        WantedBy=multi-user.target
+      dest: /etc/systemd/system/mikit.service
+
+  - systemd:
+      name: mikit.service
+      state: started
+      enabled: true
