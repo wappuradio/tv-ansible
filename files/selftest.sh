@@ -148,7 +148,7 @@ run_test mpd_levykanta "levykanta has MPD running"
 
 run_test ping_ql "QL is pingable"
 run_test ping_qltools "qltools (VM) is pingable"
-run_test mikit_node "mikit.service is running"
+run_test mikit_node "mikit.service is running (depends on qltools)"
 run_test mikit_port "mikit.service listens on port 1337"
 run_test curl_mikit "mikit.service is reachable via https://intra.wappuradio.fi/mikit/"
 
