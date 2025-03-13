@@ -46,6 +46,15 @@ network_up() {
 	ip a show eth0 | grep 'inet 10'
 }
 
+ping_studiosw1() {
+	ping -c1 -W2 10.1.0.22
+}
+ping_studiosw2() {
+	ping -c1 -W2 10.1.0.23
+}
+ping_tekniikkasw1() {
+	ping -c1 -W2 10.1.0.21
+}
 ping_local_gw() {
 	ping -c1 -W2 10.1.0.1
 }
@@ -57,6 +66,9 @@ ping_dc() {
 }
 ping_napster() {
 	ping -c1 -W2 10.1.0.1
+}
+ping_tuottaja() {
+	ping -c1 -W2 10.1.0.54
 }
 
 dns_public() {
@@ -115,9 +127,13 @@ chromium_url() {
 echo "Running self test"
 
 run_test network_up "local network interface is up"
+run_test ping_studiosw1 "studio-sw1 (10.1.0.22) is pingable"
+run_test ping_studiosw2 "studio-sw2 (10.1.0.23) is pingable"
+run_test ping_tekniikkasw1 "tekniikka-sw1 in tech rack (10.1.0.21) is pingable"
 run_test ping_local_gw "local gateway (SRX firewall in tech rack) responds to ping"
 run_test ping_internet "a host on the internet (1.1.1.1) is pingable"
 run_test ping_dc "a host in the datacenter (10.36.0.1) is pingable"
+run_test ping_tuottaja "producer desktop (tuottaja, 10.1.0.54) is pingable"
 
 run_test dns_public "public DNS names (www.google.com) resolve"
 run_test dns_idm "internal DNS names (napster.idm.wappuradio.fi) resolve"
