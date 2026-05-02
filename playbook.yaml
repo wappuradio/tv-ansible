@@ -12,6 +12,7 @@
     - nodejs
     - npm
     - libasound2-dev
+    - bind9-host
 
   - systemd:
       name: ssh.service
